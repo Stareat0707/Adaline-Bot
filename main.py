@@ -11,6 +11,11 @@ import lostark_api
 load_dotenv()
 
 class AdalineClient(discord.Client):
+    def __init__(self, *, intents: discord.Intents):
+        super().__init__(intents=intents)
+        self.tree = discord.app_commands.CommandTree(self)
+        self.scheduler = AsyncIOScheduler()
+
     async def setup_hook(self):
         await self.tree.sync()
 
@@ -19,9 +24,8 @@ class AdalineClient(discord.Client):
         print("------")
 
         # Every Wed 10:00 AM, notify lostark patch note.
-        schedurel = AsyncIOScheduler()
-        schedurel.add_job(self.on_lostark_patch_completed, CronTrigger(day_of_week="wed", hour=10))
-        schedurel.start()
+        self.scheduler.add_job(self.on_lostark_patch_completed, CronTrigger(day_of_week="wed", hour=10))
+        self.scheduler.start()
 
     # Notify lostark patch note.
     async def on_lostark_patch_completed(self):
