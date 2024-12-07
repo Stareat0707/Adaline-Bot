@@ -1,7 +1,8 @@
-from dotenv import load_dotenv
 from os import getenv
-from aiohttp import ClientSession
 from typing import Literal
+
+from dotenv import load_dotenv
+from aiohttp import ClientSession
 
 load_dotenv()
 LOSTARK_API_KEY = getenv("LOSTARK_API_KEY")

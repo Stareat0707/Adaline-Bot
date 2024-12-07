@@ -1,10 +1,11 @@
-from dotenv import load_dotenv
+from datetime import datetime
 from os import getenv
+
+from dotenv import load_dotenv
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
-from datetime import datetime
-
 import discord
+
 import lostark_api
 
 load_dotenv()
@@ -54,7 +55,7 @@ class AdalineClient(discord.Client):
 
 intents = discord.Intents.default()
 intents.guilds = True
-intents.guild_message = True
+intents.guild_messages = True
 
 client = AdalineClient(intents=intents)
 client.run(getenv("DISCORD_APP_TOKEN"))
