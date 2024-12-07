@@ -30,7 +30,7 @@ class AdalineClient(discord.Client):
         notice_list=[]
         notice_result = await lostark_api.get_news_notice(search_text="업데이트", type="공지")
         if "error" in notice_result:
-            print(f"'GET /news/notice' request failed. error code {notice_result["error"]}")
+            print(f"'GET /news/notice' request failed. error code {notice_result['error']}")
         else:
             for notice in notice_result:
                 notice_date = datetime.strptime(notice["Date"], "%Y-%m-%dT%H:%M:%S.%f").date()
