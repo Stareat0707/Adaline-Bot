@@ -37,7 +37,7 @@ class AdalineClient(discord.Client):
                 if notice_date < datetime.today().date(): # Break loop if notice date is older than today.
                     break
 
-                notice_list.append(f"[{notice["Title"]}]({notice["Link"]})")
+                notice_list.append(f"[{notice['Title']}]({notice['Link']})")
 
         if notice_list:
             message += "오늘 올라온 공지사항들을 확인해 주시겠어요?\n"
