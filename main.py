@@ -47,7 +47,7 @@ class AdalineClient(discord.Client):
         if notice_list:
             message += "오늘 올라온 공지사항들을 확인해 주시겠어요?\n"
             for index, notice in enumerate(notice_list):
-                message += f"{index}. {notice}\n"
+                message += f"{index + 1}. {notice}\n"
         else:
             message += "오늘 올라온 공지사항이 없습니다.\n"
 
