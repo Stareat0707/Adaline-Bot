@@ -4,6 +4,8 @@ from os import getenv
 from dotenv import load_dotenv
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
+import pytz
+
 import discord
 
 import lostark_api
@@ -24,7 +26,7 @@ class AdalineClient(discord.Client):
         print("------")
 
         # Every Wed 10:00 AM, notify lostark patch note.
-        self.scheduler.add_job(self.on_lostark_patch_completed, CronTrigger(day_of_week="wed", hour=10))
+        self.scheduler.add_job(self.on_lostark_patch_completed, CronTrigger(day_of_week="wed", hour=10, timezone=pytz.timezone("Asia/Seoul")))
         self.scheduler.start()
 
     # Notify lostark patch note.
