@@ -20,6 +20,6 @@ git pull
 
 # 3. 프로그램 다시 실행
 echo "프로그램 다시 실행 중..."
-nohup python3 "$SCRIPT_NAME" > output.log 2>&1 &
+nohup python3 -O "$SCRIPT_NAME" > output.log 2>&1 &
 
 echo "패치 완료!"

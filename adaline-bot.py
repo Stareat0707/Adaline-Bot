@@ -19,7 +19,12 @@ class AdalineClient(discord.Client):
         self.scheduler = AsyncIOScheduler()
 
     async def setup_hook(self):
-        await self.tree.sync()
+        if __debug__:
+            test_guild = discord.Object(getenv("TEST_GUILD_ID"))
+            self.tree.copy_global_to(guild=test_guild)
+            await self.tree.sync(guild=test_guild)
+        else:
+            await self.tree.sync()
 
     async def on_ready(self):
         print(f"Logged in as {self.user} (ID: {self.user.id})")
